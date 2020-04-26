@@ -1,4 +1,4 @@
-# Corredores aleatorios y nombres bien asignados
+#Los corredores siempre salen en el mismo orden.
 
 import pygame
 import sys
@@ -11,14 +11,12 @@ class Runner():
     __names =['Hong kong Fui', 'Pierre', 'Penelope', 'Rocomovil']
     
     def __init__(self, x=0, y=0,):
-        ixcustom= random.randint(0,3)
-        
-        self.custom= pygame.image.load("Images/{}.gif".format(self.__customs[ixcustom]))
-        self.name= self.__names[ixcustom]
+       
         self.position=[x,y]
         
-
-        
+    def custom(self, i):
+        self.custom= pygame.image.load("Images/{}.gif".format(self.__customs[i]))
+        self.name= self.__names[i]
         
     def avanzar(self):
         self.position[0] += random.randint(1,3)
@@ -41,7 +39,8 @@ class Game():
         for i in range (4):
             
             pilot= Runner(self.__startLine, self.__posicY[i])
-            #pilot.name= self.names[i]
+            pilot.custom(i)
+        
             self.runners.append(pilot)
         
     
